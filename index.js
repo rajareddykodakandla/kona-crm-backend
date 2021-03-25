@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.use("/user", userRoute);
+app.use("/v1/user", userRoute);
 
 mongoose.connect(process.env.URL, {
     useNewUrlParser: true,
