@@ -7,6 +7,6 @@ const user = new userctr()
 //console.log(user)
  router.post("/register", user.signup);
  router.post("/login", user.signin);
- router.get("/updatePassword", isAuthenticated, user.changepassword)
+ router.post("/updatePassword", isAuthenticated, user.changepassword)
 
 module.exports = router

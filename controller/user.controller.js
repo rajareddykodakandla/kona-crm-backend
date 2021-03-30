@@ -47,6 +47,7 @@ class userctr {
     }
     async changepassword(req, res) {
         req.body._id = req.auth._id;
+        console.log(req.body)
         try {
             const newpassword = await userservice.updatePassword(req.body)
             if (!newpassword) {
@@ -66,4 +67,4 @@ class userctr {
     }
 }
 
-module.exports = userctr
+module.exports = userctr;
