@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const userService = require('../services/user.sevice')
+const userService = require('../services/user.service')
 const userservice = new userService();
 
 class userctr {
@@ -47,7 +47,6 @@ class userctr {
     }
     async changepassword(req, res) {
         req.body._id = req.auth._id;
-        console.log(req.body)
         try {
             const newpassword = await userservice.updatePassword(req.body)
             if (!newpassword) {

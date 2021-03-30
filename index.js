@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const userRoute = require('./Router/user.route')
+const leadRoute = require('./Router/leads.route')
 
 const app = express()
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 app.use("/v1/user", userRoute);
+app.use("/v1/leads", leadRoute);
 
 mongoose.connect(process.env.URL, {
     useNewUrlParser: true,
