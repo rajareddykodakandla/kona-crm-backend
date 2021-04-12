@@ -19,9 +19,31 @@ class leadcontroller {
         }
     }
 
+    async getLeadbyId(req, res, next, id) {
+        try{
+            const lead = await leadservice.getLeadById(id)
+            if(!lead){
+                return res.status(400).json({
+                    error:"No lead found"
+                })
+            }
+            req.lead = lead;
+            next();
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                error: "Server error"
+            })
+        }
+    }
+
+    async getLead(req, res){
+        return res.json(req.lead);
+    }
+
     async editlead(req, res){
         try{
-            const updatedlead = await leadservice.editlead(req.body)
+            const updatedlead = await leadservice.editlead(req.lead._id)
             if(!updatedlead){
                 return res.status(400).json({
                     error:"unable to update"
@@ -55,7 +77,7 @@ class leadcontroller {
 
     async removelead(req, res){
         try{
-            const lead = await leadservice.removeLead(req.body._id)
+            const lead = await leadservice.removeLead(req.lead._id)
             if(!lead){
                 return res.status(400).json({
                     error:"lead not found"
