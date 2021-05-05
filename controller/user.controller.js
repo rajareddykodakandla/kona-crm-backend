@@ -13,7 +13,7 @@ class userctr {
                 })
             } else {
                 const user = await userservice.create(req.body)
-                const token = await jwt.sign({ _id: user._id, email: user.email }, process.env.SECRET, { expiresIn: '1h' })
+                const token = await jwt.sign({ _id: user._id, email: user.email }, process.env.SECRET, { /*expiresIn: '1h'*/ })
                 res.json({ token, userId: user._id, Email: user.email })
             }
         } catch (err) {
@@ -36,7 +36,7 @@ class userctr {
                     error: "Incorrect password"
                 })
             }
-            const token = await jwt.sign({ _id: user._id, email: user.email }, process.env.SECRET, { expiresIn: '1h' })
+            const token = await jwt.sign({ _id: user._id, email: user.email }, process.env.SECRET, { /*expiresIn: '1h' */ })
             res.json({ token, userId: user._id, email: user.email })
         } catch (err) {
             console.log(err)
@@ -55,7 +55,7 @@ class userctr {
                 })
             }
             res.json({
-                password:newpassword.password
+                password: newpassword.password
             })
         } catch (err) {
             console.log(err)
